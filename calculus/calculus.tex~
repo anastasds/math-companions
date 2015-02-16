@@ -1,0 +1,120 @@
+\documentclass[10pt]{article}
+%\usepackage{amstex}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{parskip}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{fullpage}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usetikzlibrary{matrix}
+%\usepackage[pdftex]{graphicx}
+
+\title{Math 545: Principles of Analysis II\\
+Quiz 2}
+\author{Anastas Stoyanovsky \\
+IUPUI}
+
+\DeclareMathOperator{\Diffeo}{Diffeo}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\bd}{bd}
+
+\newcommand{\eq}[1]{\[#1\]}
+\newcommand{\eqs}[1]{\begin{align*}#1\end{align*}}
+\newcommand{\tit}[1]{\textit{#1}}
+\newcommand{\tbf}[1]{\textbf{#1}}
+\newcommand{\mbb}[1]{\mathbb{#1}}
+\newcommand{\bbc}{\mathbb{C}}
+\newcommand{\bbd}{\mathbb{D}}
+\newcommand{\bbh}{\mathbb{H}}
+\newcommand{\bbn}{\mathbb{N}}
+\newcommand{\bbp}{\mathbb{P}}
+\newcommand{\bbq}{\mathbb{Q}}
+\newcommand{\bbr}{\mathbb{R}}
+\newcommand{\bbz}{\mathbb{Z}}
+\newcommand{\mcal}[1]{\mathcal{#1}}
+\newcommand{\gen}[1]{\langle #1 \rangle}
+\newcommand{\mth}{^{\text{th}}}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\onto}{\twoheadrightarrow}
+\newcommand{\xto}[1]{\xrightarrow{#1}}
+\newcommand{\parder}[2]{\frac{\partial #1}{\partial #2}}
+%\newcommand{\mit}[1]{\mathit{#1}}
+%\newcommand{\mbf}[1]{\mathbf{#1}}
+
+\begin{document}
+
+\pagenumbering{roman}
+\setcounter{page}{0}
+\pagestyle{empty}
+\maketitle
+%\tableofcontents
+
+%\twocolumn
+\pagenumbering{arabic}
+\pagestyle{plain}
+\newcommand{\s}[1]{\section*{#1}\addcontentsline{toc}{section}{#1}}
+\newcommand{\ex}[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
+\newcommand{\exl}[1]{\addcontentsline{toc}{subsection}{#1}}
+\newcommand{\pt}[1]{\paragraph*{#1}\addcontentsline{toc}{subsubsection}{#1}}
+\newcommand*\colvec[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+
+\setcounter{page}{1}
+
+\s{Quiz 2 Problems}
+\ex{Problem 1}
+Let $R = [a,b] \times [c,d]$ be a closed rectangle on the plane and $\{f_1(x,y), f_2(x,y), \dotsc\}$ a sequence of continuously differentiable functions on $R$ such that there is a constant $M > 0$ such that
+\eq{
+||f_n||_{C^1} \leq M, \quad n = 1,2,\dotsc,
+}
+
+where
+\eq{
+||f||_{C^1} = \sup_{(x,y) \in R} |f(x,y)| + \sup_{(x,y) \in R} \left| \parder{f(x,y)}{x} \right| + \sup_{(x,y) \in R} \left| \parder{f(x,y)}{y} \right| .
+}
+
+Prove that there is a subsequence $n_1 < n_2 < \dotsm$ such that the functions $\{f_{n_k}\}$ converge uniformly to a function $f$ on $R$, so that
+\eq{
+\lim_{k \to \infty} \sup_{(x,y) \in R} |f_{n_k}(x,y) - f(x,y)| = 0.
+}
+
+\tit{Proof:} Note that the definition of $||\cdot||_{C^1}$ implies that $|f_n|$, $|\parder{f_n}{x}|$, and $|\parder{f_n}{y}|$ are bounded above by $M$ for each $n_k$; in particular, $\mathcal{F} = \{f_1,f_2,\dotsc\}$ is uniformly bounded, and each $f_n$ is Lipschitz with respect to each variable (with Lipschitz constant $M$). Using the latter fact, for $(p,q),(r,s) \in R$ and any $n$,
+\eqs{
+|f_n(p,q) - f_n(r,s)| &= |f_n(p,q) - f_n(r,q) + f_n(r,q) - f_n(r,s)| \\
+&\leq |f_n(p,q) - f_n(r,q)| + |f_n(r,q) - f_n(r,s)| \\
+&\leq M|p - r| + M|q - s|
+}
+
+Now, for any $\varepsilon > 0$ and $(p,q) \in R$, let $\delta = \frac{\varepsilon}{M\sqrt{2}}$; if $||(p,q) - (r,s)||_2 < \delta$, then, since $|p-q| + |r-s| = ||(p-q) - (r-s)||_1 \leq \sqrt{2}||(p-q) - (r-s)||_2$ and using the above result, $|f_n(p,q) - f_n(r,s)| \leq M\delta\sqrt{2} = \varepsilon$. By the Arzela-Ascoli theorem, the desired subsequence exists.
+\qed
+
+\ex{Problem 2}
+Let $F$ be a closed set in a metric space $(X, \rho)$. Prove that the boundary of $F$, defined as
+\eq{
+\bd F = F \setminus (\Int F)
+}
+
+is a closed and nowhere dense set.
+
+\tit{Proof:} $\bd F = F \setminus (\Int F) = F \cap (X \setminus \Int F)$ is the intersection of closed sets and thus is closed. 
+
+Suppose $U \subseteq \bd F$ is open. Since $\Int F$ is the largest open subset of $A$, $U \subseteq \Int F$; then, $U \subseteq \bd F \cap \Int F = (F \setminus \Int F) \cap \Int F = \emptyset$, so $U = \emptyset$; therefore, $\bd F$, which is its own closure since it is closed, is hollow, and thus nowhere dense.
+\qed
+
+\ex{Bonus Problem}
+Prove that the closed unit ball in $L^2[0,1]$,
+\eq{
+B_2(0,1) = \{ \,f \in L^2[0,1] \mid ||f||_2 \leq 1 \,\},
+}
+
+is a closed, nowhere dense set in $L^1[0,1]$.
+
+\tit{Proof:} Take a sequence $\{f_n\}$ in $B_2$ that converges to some $f$ in $L^1[0,1]$. Then, there is a subsequence $\{f_{n_k}\}$ that converges to $f$ pointwise almost everywhere. By the Dominated Convergence Theorem, $\int_0^1 |f|^2 \, dx = \lim \int_0^1 |f_{n_k}|^2 \, dx \leq 1$, so $f \in B_2$. Therefore, $B_2$ is closed.
+
+Now, take some $f \in B_2(0,1)$ and any $g \in L^1[0,1] \setminus B_2(0,1)$. $f + \frac{1}{n}g \xto{n \to \infty} f$ in $L^1$, but $f + \frac{1}{n}g \not\in B_2(0,1)$ for all $n$. Therefore, $f \not\in \Int B_2(0,1)$, so $B_2$ is hollow and, being closed, is nowhere dense.
+\qed
+
+
+\end{document}
