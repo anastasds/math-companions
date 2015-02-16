@@ -8,11 +8,11 @@
 \contentsline {section}{\numberline {2.1}What is calculus?}{7}
 \contentsline {section}{\numberline {2.2}What are the topics in calculus?}{7}
 \contentsline {section}{\numberline {2.3}Why are these topics of calculus studied?}{7}
-\contentsline {section}{\numberline {2.4}How is calculus usually taught?}{7}
-\contentsline {section}{\numberline {2.5}How should calculus be taught?}{7}
-\contentsline {section}{\numberline {2.6}How should I learn calculus?}{7}
-\contentsline {section}{\numberline {2.7}What is the best way for me to approach the study of calculus?}{7}
-\contentsline {section}{\numberline {2.8}How should I use this companion text alongside my study of calculus?}{7}
+\contentsline {section}{\numberline {2.4}How is calculus usually taught?}{8}
+\contentsline {section}{\numberline {2.5}How should calculus be taught?}{8}
+\contentsline {section}{\numberline {2.6}How should I learn calculus?}{8}
+\contentsline {section}{\numberline {2.7}What is the best way for me to approach the study of calculus?}{8}
+\contentsline {section}{\numberline {2.8}How should I use this companion text alongside my study of calculus?}{8}
 \contentsline {chapter}{\numberline {3}Limits}{9}
 \contentsline {section}{\numberline {3.1}History}{9}
 \contentsline {subsection}{\numberline {3.1.1}What is the historical context of the concept of the limit?}{9}
