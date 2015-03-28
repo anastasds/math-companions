@@ -1,18 +1,116 @@
+\section{Intuition}
+\subsection{What is a limit?}
+Consider a function $f$ from the real numbers to the real numbers (in notation: given $f : \bbr \to \bbr$). Given some real number $x$ (in notation: given $x \in \bbr$), the value of $f$ at $c$ is $f(c)$. 
+
+Consider, however, the following example. Let
+\begin{equation}
+f(x) = \left\{ \begin{matrix} x & \text{if } x \neq 1, \\ 2 & \text{if } x = 1. \end{matrix} \right.
+\end{equation}
+
+[include graph]
+
+In this case, $f(1) = 2$. Consider the following approach, however: begin at $x = 0$, where $f(x) = 0$, and take note of the value of $f(x)$ as $x$ increases and gets closer to 1, without reaching it. Without already knowing that $f$ is defined so that $f(1) = 2$, one would expect, based on the value of $f(x)$ as $x$ approaches $1$, that we would have $f(1) = 1$. 
+
+This idea is captured as the \textbf{limit} of $f(x)$ as $x$ approaches 1. In notation: 
+\begin{equation}
+  \lim_{x \to 1} f(x) = 1,
+\end{equation}
+
+read as, ``the limit of $f(x)$ as $x$ approaches 1 is 2.'' This is the entire concept of a limit.
+
+The fact that $f(1) = 2$ by definition does not change the fact that, as $x$ approaches $1$ without actually reaching it, $f$ behaves \textit{as if} $f(1) = 1$. 
+
+\section{Formalism}
+Consider again the example from the preceding section, namely $f : \bbr \to \bbr$ defined by 
+\begin{equation*}
+f(x) = \left\{ \begin{matrix} x & \text{if } x \neq 1, \\ 2 & \text{if } x = 1. \end{matrix} \right.
+\end{equation*}
+
+Recall that the intuition behind the statement that $\lim_{x\to 1} f(x) = 1$ is that: 
+
+\begin{quotation}
+As $x$ gets close to $1$, $f(x)$ behaves as if $f(1) = 1$.
+\end{quotation}
+
+This intuition could be phrase a little more rigorously as:
+
+\begin{quotation}
+As the distance between $x$ and $1$ decreases, the distance between $f(x)$ and $1$ decreases.
+\end{quotation}
+
+To be mathematical, let us assign notation to these concepts. First, recall that the distance between two real numbers is defined as the absolute value of their difference, so ``the distance between $x$ and $1$'' can be written as $|x - 1|$. Similarly, ``the distance between $f(x)$ and $1$'' can be written $|f(x) - 1|$.
+
+Notice also that by ``decreases'', we actually mean ``decreases to 0'' since it would make no sense for a distance to decrease past zero, i.e. to be negative. Reusing the arrow notation above, we can write ``decreases to 0'' as $\to 0$.
+
+\begin{quotation}
+As $|x - 1| \to 0$, $|f(x) - 1| \to 0$.
+\end{quotation}
+
+This is one definition of a limit. However, it is only an encoding of our intuition using notation; it does not have very much mathematical power. $|x - 1| \to 0$ describes a general behavior, but it is not exact. Given some function and asked about the limit of that function at some point, one would not be able to \textit{prove} the value of the limit using the above definition.
+
+Suppose we want to \textit{prove} to someone else that $\lim_{x \to 1} f(x) = 1$. In order to do that, we must show that given any distance, no matter how small, $f(x)$ comes within that distance of 1 when $x$ is close enough to 1, i.e., when the distance between $x$ and $1$ is small enough. To put this into notation, we want to show that given any $\varepsilon > 0$, no matter how small (and positive since we cannot have a negative distance), $|f(x) - 1| < \varepsilon$ when $x$ is close enough to one, i.e., there is some $\delta > 0$ such that if $|x - 1| < \delta$.
+
+\begin{quotation}
+For any $\varepsilon > 0$, there exists a $\delta > 0$ such that if $|x - 1| < \delta$, then $|f(x) - 1| < \varepsilon$.
+\end{quotation}
+
+There is one subtlety here that can be easy to miss: if $|x - 1| = 0$, then $x = 1$, and $f$ is defined so that $f(x) = 2$. To rule out that case, our statement becomes
+
+\begin{quotation}
+For any $\varepsilon > 0$, there exists a $\delta > 0$ such that if $0 < |x - 1| < \delta$, then $|f(x) - 1| < \varepsilon$.
+\end{quotation}
+
+We have now fully formalized the intuition behind ``as $x$ gets close to 1, $f(x)$ behaves as if $f(1) = 1$.'' Let us work through an example.
+
+If $\lim_{x \to 1} f(x) = 1$, then if we choose $\varepsilon = 0.1$, then we should be able to find a $\delta > 0$ such that if $x$ is within distance $\delta$ of 1, then $f(x)$ is within distance $\varepsilon$ of 1 as well.
+
+[include image]
+
+In this case, it is easy to find $\delta$. Pick $\delta = 0.1$; for all $x$ such that $0 < |x - 1| < 0.1$, since $f(x) = x$ everywhere except for at $x = 1$, $|f(x) - 1| = |x - 1| < 0.1 = \varepsilon$, where the first equality is done by substituting in the definition of $f(x)$ at the values of $x$ we are considering.
+
+\begin{defn}
+Given a function $f : \bbr \to \bbr$, the limit of $f(x)$ as $x$ approaches some $c$ is $L$ if and only if for any $\varepsilon > 0$, there exists a $\delta > 0$ such that $|f(x) - L| < \varepsilon$ whenever $|x - c| < \delta$.
+\end{defn}
+
+\subsection{What is the motivation for the formal definition of a limit?}
+The motivation for this formalism was mentioned throughout the preceding section. This level of formalism may seem unnecessary for the example being given since the value of the limit being considered was easy to see. However, the formal definition gives us a rigorous way to prove the limit of a function.
+
+For example, consider $f(x) = (x^2 + 2x + 1)/(x + 1)$. $f(1)$ is undefined because $x - 1 = 0$ so the denominator becomes zero. However, it can be proven that $\lim_{x \to 1} f(x) = 2$; the formal definition of a limit gives the ability to make such conclusions in a repeatable, verifiable manner, which also gives us the ability to communicate conclusions to other people without appealing to intuition, which can be mistaken.
+
+Furthermore, limits are not only used for values of a function; aside from in mathematics, they are used in physics, engineering, statistics, and many other areas to capture the behavior of a system as it approaches a certain state.
+
+[find concrete example]
+
 \section{History}
 \subsection{What is the historical context of the concept of the limit?}
+The notion of a limit is, universally, the first concept taught in modern calculus classes; every modern calculus textbook begins with the limit. However, the calculus that Newton and Leibniz invented in the 18th century did not make any significant use of limits. Nevertheless, the concept existed in some form far prior to the invention of calculus.
 
-\section{Motivation}
-\subsection{What is the motivation for the concept of a limit?}
-\subsection{Why am I learning about limits?}
+\subsubsection{In Antiquity}
+Eudoxus (c. 408-355 BC), student of Plato and mathematician/astronomer, rigorously developed the \textbf{method of exhaustion}, which Archimedes later refined. A classic example of the method of exhaustion comes from Archimedes' computation of the area of a circle, which was later reinvented by Liu Hiu in China in the third century AD.
 
-\section{Intuition}
-\subsection{What is the intuitive understanding of a limit?}
+[include image]
+
+In the figure above, the inner hexagon's vertices rest on its enclosing circle, which is in turn tangent to the midpoints of the edges of its enclosing hexagon. Clearly, the area of the circle must be larger than the area of the inner hexagon but smaller than the area of the outer hexagon. By increasing the number of sides of the polygons used, one can better and better approximate the area of the circle using the areas of the polygons, which are easier to calculate:
+
+[include image]
+
+This application of the method of exhaustion suggests that the area of the circle is the limit of the areas of the $n$-gons as $n$ tends to infinity.
+
+\subsubsection{In Modernity}
+The limit, as an independent concept and in the form we use today, was first informally introduced by Cauchy:
+
+\begin{quotation}
+  When the successively attributed values of the same variable indefinitely approach a fixed value, so that finally they differ from it by as little as desired, the last is called the \textit{limit} of the others.
+\end{quotation} % doi:10.2307/2975545
+
+The formal definition of the limit, including the $\lim$ and $\lim_{x\to c}$  notation, was introduced by Weierestrass; placing the arrow below the limit symbol is due to Hardy. % taken almost verbatim from https://en.wikipedia.org/wiki/Limit_of_a_function ; rework)
 
 \section{Significance}
 \subsection{Which parts of the study of a limit should I understand as part of a necessary foundation for calculus?}
 
-\section{Formalism}
-\subsection{What is the motivation for the formal definition of a limit?}
+\section{Caveats}
+\subsection{What subtleties should be I pay attention to?}
+\subsection{What are some common mistakes?}
 
 \section{Computation}
 \subsection{What are common computational methods for limits?}
